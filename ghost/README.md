@@ -1,4 +1,5 @@
 ### update protocol
 ```shell
-protoc --go_out=plugins=grpc:protocol api/*
+# ghost dir
+protoc --go_out=plugins=grpc:. api/*
 ```
