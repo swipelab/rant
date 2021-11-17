@@ -1,0 +1,1 @@
+typedef ChatId = String;

@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package protocol;
+option go_package="/protocol";
+
+message Url {
+  message Link {
+    string url = 1;
+  }
+
+  message Picture {
+    string url = 1;
+  }
+
+  oneof type {
+    Link link = 1;
+    Picture picture = 2;
+  }
+}
+
+message Content {
+  oneof type {
+    string text = 1;
+    string url = 2;
+  }
+}
+
+message ChatId {
+  string id = 1;
+}
+
+message UserId {
+  string id = 1;
+}
+
+message Message {
+  ChatId chat_id = 1;
+  UserId sender_id = 2;
+  Content body = 3;
+}
+
+message Event {
+  oneof type {
+    Message message = 1;
+  }
+}
+
+message Ok {
+}
+
+service ChatService {
+  rpc send(Event) returns (Event) {}
+}
